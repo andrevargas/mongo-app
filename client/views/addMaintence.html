@@ -1,0 +1,30 @@
+<div class="panel panel-default product-panel">
+	<div class="panel-heading">
+		<h4>Manutenções</h4>
+	</div>
+	<div class="panel-body">
+		<form role="form">
+			<legend>Adicionar manutenção</legend>
+			<div class="form-group">
+				<label for="description">Descrição</label>
+				<textarea name="description" id="description" class="form-control" rows="3" ng-model="formData.description"></textarea>
+			</div>
+			<div class="form-group">
+				<label for="value">Valor</label>
+				 <input type="number" name="value" min="0" step="0.01" class="form-control" id="value" ng-model="formData.value" />	
+			</div>
+			<div class="form-group">
+				<label for="date">Data</label>
+				 <input type="date" name="date" class="form-control" id="date" ng-model="formData.date" />	
+			</div>
+			<div class="row">
+				<div class="col-md-6 pad-adjust">
+					<button type="submit" ng-click="addMaintence()" class="btn btn-primary">SALVAR</button>
+				</div>
+				<div class="col-md-6 pad-adjust">
+					<a href="/product" class="btn btn-danger btn-block">CANCELAR</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

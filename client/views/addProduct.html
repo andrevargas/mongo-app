@@ -1,0 +1,22 @@
+<div class="panel panel-default product-panel">
+	<div class="panel-heading">
+		<h4>Produtos</h4>
+	</div>
+	<div class="panel-body">
+		<form role="form">
+			<legend>Adicionar produto</legend>
+			<div class="form-group">
+				<label for="name">Nome</label>
+				<input type="text" class="form-control" id="name" placeholder="Nome do produto" ng-model="formData.name">
+			</div>
+			<div class="row">
+				<div class="col-md-6 pad-adjust">
+					<button type="submit" ng-click="createProduct()" class="btn btn-primary">SALVAR</button>
+				</div>
+				<div class="col-md-6 pad-adjust">
+					<a href="/product" class="btn btn-danger btn-block">CANCELAR</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
