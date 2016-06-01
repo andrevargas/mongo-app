@@ -1,0 +1,22 @@
+<div class="panel panel-default" ng-controller="CategoryController">
+    <div class="panel-heading">
+        <h4>Categorias</h4>
+    </div>
+    <div class="panel-body">
+        <form role="form">
+            <legend>Adicionar categoria</legend>
+            <div class="form-group">
+                <label for="name">Descrição</label>
+                <input type="text" class="form-control" id="description" placeholder="Descrição da categoria" ng-model="formData.description">
+            </div>
+            <div class="row">
+                <div class="col-md-6 pad-adjust">
+                    <button type="submit" ng-click="createCategory()" class="btn btn-primary">SALVAR</button>
+                </div>
+                <div class="col-md-6 pad-adjust">
+                    <a href="/category" class="btn btn-danger btn-block">CANCELAR</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

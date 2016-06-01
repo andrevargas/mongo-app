@@ -16,14 +16,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(methodOverride());
 
-//Definição do schema
+//Definição dos schemas
+
+//Produtos
 var productSchema = mongoose.Schema({
 	name: String,
 	maintences: Array
 }, { "strict": false });
 
-//Definição do modelo
+//Categorias
+var categorySchema = mongoose.Schema({
+	description: String
+}, { "strict": false });
+
+//Definição dos modelos
 var Product = mongoose.model('Product', productSchema);
+var Category = mongoose.model('Category', categorySchema);
 
 // Rotas
 app.get('/api/product', function(req, res){
@@ -64,6 +72,28 @@ app.put('/api/product/:id/maintence/new', function(req, res){
 			res.sendStatus(200);
 		}
 	);
+});
+
+app.get('/api/category', function(req, res){
+	Category.find(function(err, categories){
+		if(err){
+			res.send(err);
+		}
+		res.json(categories);
+	});
+});
+
+app.post('/api/category/new', function(req, res){
+	console.log(req.body.description);
+	Category.create({
+		description: req.body.description
+	}, function(err){
+		if(err){
+			res.send(err);
+		}
+		res.sendStatus(200);
+	});
+
 });
 
 app.get('*', function(req, res){
