@@ -8,11 +8,11 @@ var path = require('path');
 var moment = require('moment');
 
 // Configurações
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/mongo-app');
 
 app.use(express.static(__dirname + '/client'));
-app.use(bodyParser.urlencoded({'extended':'true'}));            
-app.use(bodyParser.json());                                     
+app.use(bodyParser.urlencoded({'extended':'true'}));
+app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(methodOverride());
 
@@ -36,7 +36,6 @@ app.get('/api/product', function(req, res){
 });
 
 app.post('/api/product/new', function(req, res){
-
 	Product.create({
 		name: req.body.name,
 		maintences: []
@@ -46,16 +45,13 @@ app.post('/api/product/new', function(req, res){
 		}
 		res.sendStatus(200);
 	});
-
 });
 
 app.put('/api/product/:id/maintence/new', function(req, res){
-
-	console.log(req.params.id);
 	Product.findByIdAndUpdate(
 		req.params.id,
 		{$push: {"maintences": {
-				description: req.body.description, 
+				description: req.body.description,
 				value: req.body.value,
 				date: moment(req.body.date, 'YYYY-MM-DD HH:mm:ss')
 			}
@@ -68,7 +64,6 @@ app.put('/api/product/:id/maintence/new', function(req, res){
 			res.sendStatus(200);
 		}
 	);
-
 });
 
 app.get('*', function(req, res){
