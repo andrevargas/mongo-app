@@ -15,3 +15,10 @@
 .pad-adjust {
 	padding-top: 10px;
 }
+
+.mongo-icon {
+    width: 35px;
+    height: 35px;
+    margin-top: -7px;
+    margin-left: -7px;
+}

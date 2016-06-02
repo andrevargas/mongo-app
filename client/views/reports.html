@@ -1,0 +1,27 @@
+<div class="panel panel-info" ng-controller="ReportController">
+    <div class="panel-heading">
+        <h4>Relatórios</h4>
+    </div>
+    <div class="table-responsive">
+        <div class="panel-body">
+            <legend>Valor gasto por categoria</legend>
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Categoria</th>
+                        <th>Valor total gasto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-show="report.data.length" ng-repeat="data in report.data">
+                        <td>{{ data._id }}</td>
+                        <td>{{ data.value }}</td>
+                    </tr>
+                    <tr ng-show="!report.data.length">
+                        <td colspan="2">Nenhum dado a ser exibido.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -25,6 +25,10 @@ app.config(function($routeProvider, $locationProvider) {
          templateUrl: '../views/addCategory.html',
          controller: 'CategoryController'
       })
+      .when('/report', {
+         templateUrl: '../views/reports.html',
+         controller: 'ReportController'
+      })
 	.otherwise ({ redirectTo: '/product' });
 
 });

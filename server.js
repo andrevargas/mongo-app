@@ -93,12 +93,11 @@ app.post('/api/category/new', function(req, res){
 			res.send(err);
 		}
 		Category.find(function(err, categories){
-		if(err){
-			res.send(err);
-		}
-		res.json(categories);
-	});
-
+			if(err){
+				res.send(err);
+			}
+			res.json(categories);
+		});
 	});
 
 });
