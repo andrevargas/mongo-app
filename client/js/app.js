@@ -30,5 +30,13 @@ app.config(function($routeProvider, $locationProvider) {
 });
 
 app.factory('categories', function($http){
-   return $http.get('/api/category');
+
+   var categories = {};
+
+   categories.get = function(){
+      return $http.get('/api/category');
+   }
+
+   return categories;
+
 });

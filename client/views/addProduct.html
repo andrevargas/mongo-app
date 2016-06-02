@@ -12,6 +12,7 @@
 			<div class="form-group">
 				<label for="name">Categoria</label>
 				<select class="form-control" ng-model="formData.category" ng-options="category as category.description for category in categories track by category.description">
+					<option ng-selected="selected" required>Selecione uma categoria</option>
 				</select>
 			</div>
 			<div class="row">

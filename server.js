@@ -63,7 +63,7 @@ app.put('/api/product/:id/maintence/new', function(req, res){
 		{$push: {"maintences": {
 				description: req.body.description,
 				value: req.body.value,
-				date: moment(req.body.date, 'YYYY-MM-DD HH:mm:ss')
+				date: moment(req.body.date).format('YYYY-MM-DD HH:mm:ss')
 			}
 		}},
 		{safe: true, upsert: false},
@@ -86,14 +86,40 @@ app.get('/api/category', function(req, res){
 });
 
 app.post('/api/category/new', function(req, res){
-	console.log(req.body.description);
 	Category.create({
 		description: req.body.description
 	}, function(err){
 		if(err){
 			res.send(err);
 		}
-		res.sendStatus(200);
+		Category.find(function(err, categories){
+		if(err){
+			res.send(err);
+		}
+		res.json(categories);
+	});
+
+	});
+
+});
+
+app.get('/api/report', function(req, res){
+
+	var context = {};
+	context.map = function () {
+		for(i = 0; i < this.maintences.length; i++){
+			emit(this.category, this.maintences[i].value)
+		}
+	};
+	context.reduce = function (key, values){
+		return Array.sum(values);
+	}
+
+	Product.mapReduce(context, function(err, results) {
+		if(err){
+			res.send(err);
+		}
+		res.send(results);
 	});
 
 });

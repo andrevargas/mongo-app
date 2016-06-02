@@ -3,7 +3,7 @@ app.controller('ProductController', function($scope, $http, $location, $routePar
 	$http.get('/api/product').then(function (response) {
 		$scope.products = response.data;
 	});
-	categories.then(function (response) {
+	categories.get().then(function (response) {
         $scope.categories = response.data;
         $scope.formData.category = $scope.categories[0];
     });
