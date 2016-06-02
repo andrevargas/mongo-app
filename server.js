@@ -18,15 +18,16 @@ app.use(methodOverride());
 
 //Definição dos schemas
 
-//Produtos
-var productSchema = mongoose.Schema({
-	name: String,
-	maintences: Array
-}, { "strict": false });
-
 //Categorias
 var categorySchema = mongoose.Schema({
 	description: String
+}, { "strict": false });
+
+//Produtos
+var productSchema = mongoose.Schema({
+	name: String,
+	maintences: Array,
+	category: String
 }, { "strict": false });
 
 //Definição dos modelos
@@ -46,7 +47,8 @@ app.get('/api/product', function(req, res){
 app.post('/api/product/new', function(req, res){
 	Product.create({
 		name: req.body.name,
-		maintences: []
+		maintences: [],
+		category: req.body.category.description
 	}, function(err){
 		if(err){
 			res.send(err);

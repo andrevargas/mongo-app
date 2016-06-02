@@ -1,6 +1,6 @@
-app.controller('CategoryController', function($scope, $http, $location){
+app.controller('CategoryController', function($scope, $http, $location, categories){
     $scope.formData = {};
-    $http.get('/api/category').then(function (response) {
+    categories.then(function (response) {
         $scope.categories = response.data;
     });
     $scope.createCategory = function(){

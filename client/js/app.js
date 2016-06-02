@@ -28,3 +28,7 @@ app.config(function($routeProvider, $locationProvider) {
 	.otherwise ({ redirectTo: '/product' });
 
 });
+
+app.factory('categories', function($http){
+   return $http.get('/api/category');
+});
