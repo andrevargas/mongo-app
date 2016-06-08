@@ -26,7 +26,7 @@ var categorySchema = mongoose.Schema({
 //Produtos
 var productSchema = mongoose.Schema({
 	name: String,
-	maintences: Array,
+	maintenances: Array,
 	category: String
 }, { "strict": false });
 
@@ -47,7 +47,7 @@ app.get('/api/product', function(req, res){
 app.post('/api/product/new', function(req, res){
 	Product.create({
 		name: req.body.name,
-		maintences: [],
+		maintenances: [],
 		category: req.body.category.description
 	}, function(err){
 		if(err){
@@ -57,10 +57,10 @@ app.post('/api/product/new', function(req, res){
 	});
 });
 
-app.put('/api/product/:id/maintence/new', function(req, res){
+app.put('/api/product/:id/maintenance/new', function(req, res){
 	Product.findByIdAndUpdate(
 		req.params.id,
-		{$push: {"maintences": {
+		{$push: {"maintenances": {
 				description: req.body.description,
 				value: req.body.value,
 				date: moment(req.body.date).format('YYYY-MM-DD HH:mm:ss')
@@ -106,8 +106,8 @@ app.get('/api/report', function(req, res){
 
 	var context = {};
 	context.map = function () {
-		for(i = 0; i < this.maintences.length; i++){
-			emit(this.category, this.maintences[i].value)
+		for(i = 0; i < this.maintenances.length; i++){
+			emit(this.category, this.maintenances[i].value)
 		}
 	};
 	context.reduce = function (key, values){

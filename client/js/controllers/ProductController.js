@@ -14,8 +14,8 @@ app.controller('ProductController', function($scope, $http, $location, $routePar
 			$location.path('/product');
 		});
 	};
-	$scope.addMaintence = function(){
-		$http.put('/api/product/'+ $routeParams.id +'/maintence/new', $scope.formData)
+	$scope.addMaintenance = function(){
+		$http.put('/api/product/'+ $routeParams.id +'/maintenance/new', $scope.formData)
 		.success(function(){
 			$scope.formData = {};
 			$location.path('/product');

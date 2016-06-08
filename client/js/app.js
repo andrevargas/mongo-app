@@ -13,8 +13,8 @@ app.config(function($routeProvider, $locationProvider) {
          templateUrl: '../views/addProduct.html',
          controller: 'ProductController'
    	})
-   	.when('/product/:id/maintence/new', {
-         templateUrl: '../views/addMaintence.html',
+   	.when('/product/:id/maintenance/new', {
+         templateUrl: '../views/addMaintenance.html',
          controller: 'ProductController'
    	})
       .when('/category', {
