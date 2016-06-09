@@ -5,17 +5,17 @@ app.config(function($routeProvider, $locationProvider) {
 	$locationProvider.html5Mode(true);
 
 	$routeProvider
-	.when('/product', {
-         templateUrl: '../views/products.html',
-         controller: 'ProductController'
+	.when('/equipment', {
+         templateUrl: '../views/equipments.html',
+         controller: 'EquipmentController'
    	})
-   	.when('/product/new', {
-         templateUrl: '../views/addProduct.html',
-         controller: 'ProductController'
+   	.when('/equipment/new', {
+         templateUrl: '../views/addEquipment.html',
+         controller: 'EquipmentController'
    	})
-   	.when('/product/:id/maintenance/new', {
+   	.when('/equipment/:id/maintenance/new', {
          templateUrl: '../views/addMaintenance.html',
-         controller: 'ProductController'
+         controller: 'EquipmentController'
    	})
       .when('/category', {
          templateUrl: '../views/categories.html',
@@ -29,7 +29,7 @@ app.config(function($routeProvider, $locationProvider) {
          templateUrl: '../views/reports.html',
          controller: 'ReportController'
       })
-	.otherwise ({ redirectTo: '/product' });
+	.otherwise ({ redirectTo: '/equipment' });
 
 });
 

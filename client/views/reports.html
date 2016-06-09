@@ -15,7 +15,7 @@
                 <tbody>
                     <tr ng-show="report.data.length" ng-repeat="data in report.data">
                         <td>{{ data._id }}</td>
-                        <td>{{ data.value }}</td>
+                        <td>{{ data.value | currency }}</td>
                     </tr>
                     <tr ng-show="!report.data.length">
                         <td colspan="2">Nenhum dado a ser exibido.</td>

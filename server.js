@@ -23,29 +23,44 @@ var categorySchema = mongoose.Schema({
 	description: String
 }, { "strict": false });
 
-//Produtos
-var productSchema = mongoose.Schema({
+//Equipamentos
+var equipmentSchema = mongoose.Schema({
 	name: String,
 	maintenances: Array,
 	category: String
 }, { "strict": false });
 
 //Definição dos modelos
-var Product = mongoose.model('Product', productSchema);
+var Equipment = mongoose.model('Equipment', equipmentSchema);
 var Category = mongoose.model('Category', categorySchema);
 
 // Rotas
-app.get('/api/product', function(req, res){
-	Product.find(function(err, products){
+
+//Listar equipamentos
+app.get('/api/equipment', function(req, res){
+	Equipment.find(function(err, equipments){
 		if(err){
 			res.send(err);
 		}
-		res.json(products);
+		res.json(equipments);
 	});
 });
 
-app.post('/api/product/new', function(req, res){
-	Product.create({
+//Encontrar um equipamento
+app.get('/api/equipment/:id', function(req, res){
+	Equipment.findById(
+		req.params.id,
+		function(err, equipment){
+			if(err){
+				res.send(err);
+			}
+			res.json(equipment);
+		});
+});
+
+//Criar novo equipamento
+app.post('/api/equipment/new', function(req, res){
+	Equipment.create({
 		name: req.body.name,
 		maintenances: [],
 		category: req.body.category.description
@@ -57,8 +72,9 @@ app.post('/api/product/new', function(req, res){
 	});
 });
 
-app.put('/api/product/:id/maintenance/new', function(req, res){
-	Product.findByIdAndUpdate(
+//Adicionar nova manutenção ao equipamento
+app.put('/api/equipment/:id/maintenance/new', function(req, res){
+	Equipment.findByIdAndUpdate(
 		req.params.id,
 		{$push: {"maintenances": {
 				description: req.body.description,
@@ -76,6 +92,7 @@ app.put('/api/product/:id/maintenance/new', function(req, res){
 	);
 });
 
+//Listar categorias
 app.get('/api/category', function(req, res){
 	Category.find(function(err, categories){
 		if(err){
@@ -85,6 +102,7 @@ app.get('/api/category', function(req, res){
 	});
 });
 
+//Criar nova categoria
 app.post('/api/category/new', function(req, res){
 	Category.create({
 		description: req.body.description
@@ -102,6 +120,7 @@ app.post('/api/category/new', function(req, res){
 
 });
 
+//Listar relatórios
 app.get('/api/report', function(req, res){
 
 	var context = {};
@@ -114,7 +133,7 @@ app.get('/api/report', function(req, res){
 		return Array.sum(values);
 	}
 
-	Product.mapReduce(context, function(err, results) {
+	Equipment.mapReduce(context, function(err, results) {
 		if(err){
 			res.send(err);
 		}
@@ -123,9 +142,11 @@ app.get('/api/report', function(req, res){
 
 });
 
+//Enviar o arquivo manuseado pelo Angular para qualquer requisição
 app.get('*', function(req, res){
 	res.sendFile(path.join(__dirname, 'client/index.html'));
 });
 
+//Aplicação executando na porta 3000
 app.listen(3000);
 console.log('Application running on port 3000');

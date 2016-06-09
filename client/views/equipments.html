@@ -1,0 +1,32 @@
+<div class="panel panel-default" ng-controller="EquipmentController">
+	<div class="panel-heading">
+		<h4 class="pull-left">Equipamentos</h4>
+		<a href="/equipment/new" class="btn btn-primary pull-right">Novo equipamento</a>
+		<div class="clearfix"></div>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-bordered table-hover table-striped">
+			<thead>
+				<tr>
+					<th>Equipamento</th>
+					<th>Quantidade de manutenções</th>
+					<th>Ações</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-show="equipments.length" ng-repeat="equipment in equipments">
+					<td>{{ equipment.name }}</td>
+					<td>{{ equipment.maintenances.length }}</td>
+					<td class="text-center">
+						<a ng-href="equipment/{{ equipment._id }}/maintenance/new" class="btn btn-success btn-circle" title="Adicionar manutenção">
+							<i class="glyphicon glyphicon-plus"></i>
+						</a>
+					</td>
+				</tr>
+				<tr ng-show="!equipments.length">
+					<td colspan="3">Nenhum equipamento cadastrado.</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

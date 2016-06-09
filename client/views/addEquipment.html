@@ -1,13 +1,13 @@
-<div class="panel panel-default" ng-controller="ProductController">
+<div class="panel panel-default" ng-controller="EquipmentController">
 	<div class="panel-heading">
-		<h4>Produtos</h4>
+		<h4>Equipamentos</h4>
 	</div>
 	<div class="panel-body">
 		<form role="form">
-			<legend>Adicionar produto</legend>
+			<legend>Adicionar equipamento</legend>
 			<div class="form-group">
 				<label for="name">Nome</label>
-				<input type="text" class="form-control" id="name" placeholder="Nome do produto" ng-model="formData.name">
+				<input type="text" class="form-control" id="name" placeholder="Nome do equipamento" ng-model="formData.name">
 			</div>
 			<div class="form-group">
 				<label for="name">Categoria</label>
@@ -17,10 +17,10 @@
 			</div>
 			<div class="row">
 				<div class="col-md-6 pad-adjust">
-					<button type="submit" ng-click="createProduct()" class="btn btn-primary btn-block">SALVAR</button>
+					<button type="submit" ng-click="createEquipment()" class="btn btn-primary btn-block">SALVAR</button>
 				</div>
 				<div class="col-md-6 pad-adjust">
-					<a href="/product" class="btn btn-danger btn-block">CANCELAR</a>
+					<a href="/equipment" class="btn btn-danger btn-block">CANCELAR</a>
 				</div>
 			</div>
 		</form>
