@@ -42,7 +42,9 @@ app.get('/api/equipment', function(req, res){
 		if(err){
 			res.send(err);
 		}
-		res.json(equipments);
+		else {
+			res.json(equipments);
+		}
 	});
 });
 
@@ -54,7 +56,9 @@ app.get('/api/equipment/:id', function(req, res){
 			if(err){
 				res.send(err);
 			}
-			res.json(equipment);
+			else {
+				res.json(equipment);
+			}
 		});
 });
 
@@ -68,7 +72,9 @@ app.post('/api/equipment/new', function(req, res){
 		if(err){
 			res.send(err);
 		}
-		res.sendStatus(200);
+		else {
+			res.sendStatus(200);
+		}
 	});
 });
 
@@ -87,7 +93,9 @@ app.put('/api/equipment/:id/maintenance/new', function(req, res){
 			if(err){
 				res.send(err);
 			}
-			res.sendStatus(200);
+			else {
+				res.sendStatus(200);
+			}
 		}
 	);
 });
@@ -98,7 +106,9 @@ app.get('/api/category', function(req, res){
 		if(err){
 			res.send(err);
 		}
-		res.json(categories);
+		else {
+			res.json(categories);
+		}
 	});
 });
 
@@ -114,7 +124,9 @@ app.post('/api/category/new', function(req, res){
 			if(err){
 				res.send(err);
 			}
-			res.json(categories);
+			else {
+				res.json(categories);
+			}
 		});
 	});
 
@@ -129,6 +141,7 @@ app.get('/api/report', function(req, res){
 			emit(this.category, this.maintenances[i].value)
 		}
 	};
+
 	context.reduce = function (key, values){
 		return Array.sum(values);
 	}
@@ -137,7 +150,9 @@ app.get('/api/report', function(req, res){
 		if(err){
 			res.send(err);
 		}
-		res.send(results);
+		else {
+			res.send(results);
+		}
 	});
 
 });
